@@ -33,11 +33,14 @@ const Logout = () => {
     }
   }
   return (
-  <>
-  <p>Logout</p>
-  <button onClick={handleLogout}>Logout</button>
-  </>
-  ) 
+    <>
+      <p>Logout</p>
+      <button onClick={handleLogout}>Logout</button>
+      
+      {/*method-2*/}
+      {/* <button onClick={() => navigate("/login")}>Logout</button> */}
+    </>
+  ); 
 }
 
 function App() {
