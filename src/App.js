@@ -5,9 +5,10 @@ import {
   Route,
   Routes,
   useNavigate,
-  useState
+  useParams,
+  Outlet
 } from 'react-router-dom';
-
+import {useState} from "react"
 const Todo = () => {
   return (
     <>
@@ -32,16 +33,32 @@ const Logout = () => {
       navigate('/login')
     }
   }
+
   return (
     <>
       <p>Logout</p>
       <button onClick={handleLogout}>Logout</button>
-      
+
       {/*method-2*/}
       {/* <button onClick={() => navigate("/login")}>Logout</button> */}
     </>
   ); 
 }
+
+
+const Post = () => { 
+  return (
+    <><p>Post頁面</p><Outlet /></>
+  )
+}
+
+
+const PostId = () => {
+  const params = useParams()
+  return <p>Post ID: {params.postId}</p>
+
+}
+
 
 function App() {
   return (
@@ -60,14 +77,21 @@ function App() {
           <NavLink to="/todo">
             <p>Todo 頁面</p>
           </NavLink>
+          <NavLink to="/post">
+            <p>Post 詳細頁面</p>
+          </NavLink>
         </div>
         {/* Routes, Route 練習區 */}
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/todo" element={<Todo />} />
-        </Routes>
 
+          <Route path="/post" element={<Post />}>
+            <Route path=":postId" element={<PostId />} />
+          </Route>
+        </Routes>
+        
         {/* 練習區 */}
       </BrowserRouter>
     </div>
