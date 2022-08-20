@@ -3,11 +3,18 @@ import {
   BrowserRouter,
   NavLink,
   Route,
-  Routes
+  Routes,
+  useNavigate,
+  useState
 } from 'react-router-dom';
 
 const Todo = () => {
-  return <p>這是 Todo 頁面 </p>;
+  return (
+    <>
+      <p>這是 Todo 頁面 </p>
+      <Logout/>
+    </>
+  );
 };
 
 const Login = () => {
@@ -16,6 +23,22 @@ const Login = () => {
 const Register = () => {
   return <p>這是註冊頁面</p>;
 };
+
+const Logout = () => {
+  let navigate = useNavigate()
+  const [isLogin,setIsLogin] = useState(false)
+  const handleLogout = () =>{
+    if(!isLogin){
+      navigate('/login')
+    }
+  }
+  return (
+  <>
+  <p>Logout</p>
+  <button onClick={handleLogout}>Logout</button>
+  </>
+  ) 
+}
 
 function App() {
   return (
